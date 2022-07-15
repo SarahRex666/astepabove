@@ -16,7 +16,7 @@ function Teachers() {
   }, []);
 
   return (
-    <div>
+    <div class="container">
       <h1>TEACHERS</h1>
       <TeacherContainer teachers={teachers} />
     </div>

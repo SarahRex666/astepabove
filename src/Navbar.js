@@ -1,68 +1,80 @@
-import React from "react";
+import { render } from "@testing-library/react";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import Logout from "./Logout";
 
-const Navbar = () => {
+function BasicExample({ currentUser }) {
+  const [user, setUser] = useState("");
+
+  if (currentUser) {
+    return (
+      <Navbar bg="light" expand="lg">
+        <Container>
+          <Navbar.Brand href="/">A Step Above</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link as={Link} to="/">
+                Home
+              </Nav.Link>
+              <Nav.Link as={Link} to="/offerings">
+                Offerings
+              </Nav.Link>
+              <Nav.Link as={Link} to="/teachers">
+                Teachers
+              </Nav.Link>
+              <Nav.Link as={Link} to="/contact">
+                Contact Us
+              </Nav.Link>
+              <Nav.Link as={Link} to="/profile">
+                Profile
+              </Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+          <Nav.Link as={Link} to="/logout">
+            Logout
+          </Nav.Link>
+        </Container>
+      </Navbar>
+    );
+  }
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <a className="navbar-brand" href="#"></a>
-      <button
-        className="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span className="navbar-toggler-icon"></span>
-      </button>
-
-      <div className="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul className="navbar-nav">
-          <li className="nav-item active">
-            <a className="nav-link" href="/">
-              Home <span className="sr-only"></span>
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="/offerings">
+    <Navbar bg="light" expand="lg">
+      <Container>
+        <Navbar.Brand href="/">A Step Above</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link as={Link} to="/">
+              Home
+            </Nav.Link>
+            <Nav.Link as={Link} to="/offerings">
               Offerings
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="/teachers">
+            </Nav.Link>
+            <Nav.Link as={Link} to="/teachers">
               Teachers
-            </a>
-          </li>
-          <li className="nav-item dropdown">
-            <a
-              className="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdownMenuLink"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Sign Up/Sign In
-            </a>
-            <div
-              className="dropdown-menu"
-              aria-labelledby="navbarDropdownMenuLink"
-            >
-              <a className="dropdown-item" href="#">
-                Action
-              </a>
-              <a className="dropdown-item" href="#">
-                Another action
-              </a>
-              <a className="dropdown-item" href="#">
-                Something else here
-              </a>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </nav>
+            </Nav.Link>
+            <Nav.Link as={Link} to="/contact">
+              Contact Us
+            </Nav.Link>
+            <NavDropdown title="Sign In/Sign Up" id="basic-nav-dropdown">
+              <NavDropdown.Item as={Link} to="/signin">
+                Sign In
+              </NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item as={Link} to="/signup">
+                Sign Up
+              </NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
-};
+}
 
-export default Navbar;
+export default BasicExample;
